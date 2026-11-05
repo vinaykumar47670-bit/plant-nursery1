@@ -6,11 +6,15 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 5000;
+app.set('trust proxy', 1);
+const PORT = process.env,PORT || 5000;
 const uploadDir = path.join(__dirname, 'uploads');
 fs.mkdirSync(uploadDir, { recursive: true });
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({
+  origin: 'https://plant-nursery1.vercel.app',
+  credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static(uploadDir));
 
@@ -30,7 +34,9 @@ app.post('/upload', (req, res) => {
   upload.single('image')(req, res, (err) => {
     if (err) return res.status(400).json({ error: err.message });
     if (!req.file) return res.status(400).json({ error: 'Choose an image to upload' });
-    res.json({ url: `http://localhost:${PORT}/uploads/${req.file.filename}` });
+    res.json({
+  url: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+});
   });
 });
 
