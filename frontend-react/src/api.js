@@ -28,4 +28,4 @@ export const api = {
 export const money = (n) =>
   '₹' + Number(n).toLocaleString('en-IN');
 
-export const NODE_URL = 'https://YOUR-NODE-SERVICE-DOMAIN';
+export const NODE_URL = 'https://mellow-motivation-production-7868.up.railway.app';
