@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const app = express();
 app.set('trust proxy', 1);
-const PORT = process.env,PORT || 5000;
+const PORT = process.env.PORT || 5000;
 const uploadDir = path.join(__dirname, 'uploads');
 fs.mkdirSync(uploadDir, { recursive: true });
 
