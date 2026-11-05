@@ -2,11 +2,11 @@
 // Shared config + helpers for every API file
 session_start();
 
-define('DB_HOST', '127.0.0.1');
-define('DB_PORT', '3307');
-define('DB_NAME', 'plant_nursery');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', getenv('MYSQLHOST'));
+define('DB_PORT', getenv('MYSQLPORT'));
+define('DB_NAME', getenv('MYSQLDATABASE'));
+define('DB_USER', getenv('MYSQLUSER'));
+define('DB_PASS', getenv('MYSQLPASSWORD'));
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: http://localhost:5173');
